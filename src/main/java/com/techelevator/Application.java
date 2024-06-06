@@ -3,6 +3,8 @@ package com.techelevator;
 import com.sun.tools.javac.Main;
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
@@ -70,6 +72,7 @@ public class Application {
 		this.running=true;
 		//stocklist
 		vend.loadInventoryList(ic);
+		//printInventoryList();
 		//load physical inventory
 		while (running){
 
@@ -88,8 +91,9 @@ public class Application {
 
 			switch (chosenInput){
 				case DISPLAY_VENDING_MACHINE_ITEMS:
-					Vend inventory = new Vend();
-					inventory.loadInventoryList(this.ic);
+					printInventoryList();
+					//Vend inventory = new Vend();
+					//inventory.loadInventoryList(this.ic);
 					break;
 				case PURCHASE:
 					this.activeMenu = PURCHASE_MENU;
@@ -100,7 +104,15 @@ public class Application {
 					// return sales report
 					break;
 				case FEED_MONEY:
+					System.out.println("How much would you like to deposit?");
+
+					Scanner moneyIn = new Scanner(System.in);
+					int usersMoneyIn = Integer.parseInt();
+
+
+					vend.feedMoney(usersMoneyIn);
 					break;
+
 				case SELECT_PRODUCT:
 					Vend inventoryList = new Vend();
 					inventoryList.loadInventory(this.vend);
@@ -122,6 +134,17 @@ public class Application {
 				System.out.println(menuOptionNumber + activeMenu[i]);
 			}
 		} System.out.println("\n");
+	}
+	private void printInventoryList(){//TODO order the list
+		for(Map.Entry<String, Item> stockItem : ic.stockList.entrySet()){
+			System.out.println(stockItem.getKey() + ": " + stockItem.getValue().toString());
+		}
+	}
+	private void loadInventory(){
+		for(Map.Entry<String, List<Item>> slotItems : ic.inventory.entrySet()){
+			String itemName = ic.stockList.get(slotItems.getKey()).getName();
+			System.out.println("Slot (" + slotItems.getKey() + ") has " + slotItems.getValue().size() + " " + itemName);
+		}
 	}
 
 }

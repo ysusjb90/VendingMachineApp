@@ -43,4 +43,13 @@ public class Item {
         this.price = price;
         this.type = type;
     }
+    @Override
+    public String toString(){
+        return "Item{" +
+                "slotLocation='" + slotLocation + '\'' +
+                ", name='" + name + '\'' +
+                ", price= '$" + price + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

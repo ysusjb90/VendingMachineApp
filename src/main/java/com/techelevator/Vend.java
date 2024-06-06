@@ -14,11 +14,11 @@ public class Vend {
     //money out
     private final String INVENTORY_LIST = "vendingmachine.csv";
     private final int MAX_SLOT_NUMBER = 5;
-    private double balance = 0;
-    private double changeNeeded = 0;
-    private static final double NICKEL = .05;
-    private static final double DIME = .10;
-    private static final double QUARTER = .25;
+    private int balance = 0;
+    private int changeNeeded = 0;
+    private static final int NICKEL = 5;
+    private static final int DIME = 10;
+    private static final int QUARTER = 25;
 
     public String getINVENTORY_LIST() {
         return INVENTORY_LIST;
@@ -80,26 +80,42 @@ public class Vend {
     }
 
 
-    private void feedMoney(double balance) {
+    public void feedMoney(int balance) {
         balance = 0;
-        Double userInput = 0.00;
-        Scanner userMoney = new Scanner(String.valueOf(userInput));
+        int userMoneyInput = 0;
+        Scanner userMoney = new Scanner(String.valueOf(userMoneyInput));
         try {
-            userInput = Double.parseDouble(userMoney.nextLine());
-            balance += userInput;
+            userMoneyInput = Integer.parseInt(userMoney.nextLine());
+            balance += userMoneyInput;
             System.out.println(balance);
         } catch (NumberFormatException nfe) {
-            userInput = 0.00;
+            userMoneyInput = 0;
         }
-        private void endTransaction ( double balance){
-            balance = changeNeeded;
-            if (changeNeeded % QUARTER >= 0) {
-                balance = balance - changeNeeded;
-                if (changeNeeded % QUARTER < 1 && changeNeeded % QUARTER > 0) {
-                    balance = balance - changeNeeded % QUARTER * QUARTER;
-                }
+
+    }
+    public void endTransaction (int balance){
+        if(balance > 0){
+        int change = balance * 100;
+        int numOfQuarters = change / QUARTER;
+        change = change % QUARTER;
+        int numOfDimes = change / DIME;
+        change = change % DIME;
+        int numOfNickels = change / NICKEL;
+            System.out.println("Returns: " + numOfQuarters + " Quarters, " + numOfDimes + " Dimes, and " + numOfNickels + " Nickels.");
+        balance = 0;}
+
+
+
+
+
+
+        /* balance = changeNeeded;
+        if (changeNeeded % QUARTER >= 0) {
+            balance = balance - changeNeeded;
+            if (changeNeeded % QUARTER < 1 && changeNeeded % QUARTER > 0) {
+                balance = balance - changeNeeded % QUARTER * QUARTER;
             }
-        }
+        }*/
     }
 }
 
