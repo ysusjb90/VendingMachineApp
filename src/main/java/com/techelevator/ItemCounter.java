@@ -20,7 +20,13 @@ public class ItemCounter {
         if(items != null && items.size() >0 ){
             result = items.remove(0);
             inventory.put(slotLocation, items);
-            //System.out.println(); TODO get the vend message
+            Vend balanceUpdater = new Vend();
+            int currentBalance = balanceUpdater.getBalance();
+            Item priceUpdater = new Item();
+            int cost = (int) priceUpdater.getPrice();
+            currentBalance = currentBalance - cost;
+
+
 
         }
         return result;

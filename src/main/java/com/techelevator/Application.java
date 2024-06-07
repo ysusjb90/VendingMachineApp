@@ -143,9 +143,27 @@ public class Application {
 					//System.out.println("You purchased a "+ purchaseItem.toString());
 
 					if (purchaseItem != null){
-						System.out.println("You purchased a " + purchaseItem.toString());
+						System.out.println("You purchased " + purchaseItem.getName().toString());
 						purchaseItem = null;
+
+						String itemType = ic.stockList.get(itemLocation).getType();
+						switch (itemType){
+							case "Chip":
+								System.out.println("Crunch Crunch, Yum");
+								break;
+							case "Gum":
+								System.out.println("Chew Chew, Yum");
+								break;
+							case "Drink":
+								System.out.println("Glug Glug, Yum");
+								break;
+							case "Candy":
+								System.out.println("Munch Munch, Yum");
+								break;
+
+						}
 					}else{
+
 						System.out.println("Sold out!");
 					}
 					break;

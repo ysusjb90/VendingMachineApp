@@ -7,6 +7,10 @@ public class Item {
     private String type;
     private String message;
 
+    public Item() {
+
+    }
+
     public String getSlotLocation() {
         return slotLocation;
     }
@@ -24,20 +28,14 @@ public class Item {
     }
 
     public double getPrice() {
-        return price;
+        return price * 100;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public Item(String slotLocation, String name, double price, String type) {
         this.slotLocation = slotLocation;
