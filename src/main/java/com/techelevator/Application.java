@@ -106,9 +106,9 @@ public class Application {
 				case FEED_MONEY:
 					System.out.println("How much would you like to deposit?");
 
-					Scanner moneyIn = new Scanner(System.in);
-					int usersMoneyIn = Integer.parseInt();
-
+					String moneyIn = vendingScanner.nextLine();
+					int usersMoneyIn = Integer.parseInt(moneyIn);
+					Vend feedMoney = new Vend();
 
 					vend.feedMoney(usersMoneyIn);
 					break;
@@ -120,6 +120,11 @@ public class Application {
 				case FINISH_TRANSACTION:
 					// return change
 					// balance = 0
+
+					int change = this.vend.getBalance();
+					
+					Vend getChange = new Vend();
+					getChange.endTransaction(change);
 					this.activeMenu = MAIN_MENU;
 					break;
 			}

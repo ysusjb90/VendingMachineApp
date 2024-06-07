@@ -14,8 +14,7 @@ public class Vend {
     //money out
     private final String INVENTORY_LIST = "vendingmachine.csv";
     private final int MAX_SLOT_NUMBER = 5;
-    private int balance = 0;
-    private int changeNeeded = 0;
+    private int balance;
     private static final int NICKEL = 5;
     private static final int DIME = 10;
     private static final int QUARTER = 25;
@@ -28,8 +27,12 @@ public class Vend {
         return MAX_SLOT_NUMBER;
     }
 
-    public double getBalance() {
-        return balance;
+    public int getBalance() {
+        return this.balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public Vend() {
@@ -81,8 +84,8 @@ public class Vend {
 
 
     public void feedMoney(int balance) {
-        balance = 0;
         int userMoneyInput = 0;
+        this.balance=balance;
         Scanner userMoney = new Scanner(String.valueOf(userMoneyInput));
         try {
             userMoneyInput = Integer.parseInt(userMoney.nextLine());
@@ -102,7 +105,8 @@ public class Vend {
         change = change % DIME;
         int numOfNickels = change / NICKEL;
             System.out.println("Returns: " + numOfQuarters + " Quarters, " + numOfDimes + " Dimes, and " + numOfNickels + " Nickels.");
-        balance = 0;}
+            System.out.println("balance = " + balance + ".");
+        }
 
 
 
