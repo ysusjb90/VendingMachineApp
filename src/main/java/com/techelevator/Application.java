@@ -78,7 +78,8 @@ public class Application {
 		//printInventoryList();
 		//load physical inventory
 		vend.loadInventory(ic);
-		checkInventory();
+		//checkInventory();
+
 
 		//if (purchaseItem != null){
 		//	System.out.println("You bought a " + purchaseItem.toString());
@@ -114,6 +115,7 @@ public class Application {
 					break;
 				case EXIT:
 					this.running = false;
+					break;
 				case HIDDEN_METHOD:
 					// return sales report
 					break;
@@ -128,22 +130,25 @@ public class Application {
 					break;
 
 				case SELECT_PRODUCT:
-					printInventoryList();
+					//printInventoryList();
+					checkInventory();
 					System.out.println("Enter slot ID for desired item: ");
 					String itemLocation = vendingScanner.nextLine();
+					purchaseItem = ic.purchase(itemLocation);
+					//purchaseItem = ic.purchase(itemLocation);
+
 					ItemCounter dispense = new ItemCounter();
 					dispense.purchase(itemLocation);
-					System.out.println("You purchased a "+ purchaseItem.toString());
+					//System.out.println("You purchased a "+ purchaseItem.toString());
+
 					if (purchaseItem != null){
-						System.out.println("You purchase a " + purchaseItem.toString());
+						System.out.println("You purchased a " + purchaseItem.toString());
 						purchaseItem = null;
 					}else{
 						System.out.println("Sold out!");
 					}
 					break;
 				case FINISH_TRANSACTION:
-					// return change
-					// balance = 0
 
 					int change = this.vend.getBalance();
 

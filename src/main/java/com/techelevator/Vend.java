@@ -72,11 +72,11 @@ public class Vend {
                     int count = MAX_SLOT_NUMBER;
                     slotNumberList = new ArrayList<>();
                     for (int i = 0; i < count; i++) {
-                        slotNumberList.add(new Item(data[0], data[1], Double.parseDouble(data[3]), data[4]));
+                        slotNumberList.add(new Item(data[0], data[1], Double.parseDouble(data[2]), data[3]));
                     }
                     result.put(slotNumber, slotNumberList);
                 }
-            }
+            } ic.inventory = result;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e); //TODO throw error message update logs
         }

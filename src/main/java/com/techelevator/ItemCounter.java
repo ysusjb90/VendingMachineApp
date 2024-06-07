@@ -16,8 +16,11 @@ public class ItemCounter {
     }
     public Item purchase(String slotLocation){
         Item result = null;
-        if(this.inventory.get(slotLocation).size() > 0 ){
-            result = this.inventory.get(slotLocation).remove(0);
+        List<Item> items = inventory.get(slotLocation);
+        if(items != null && items.size() >0 ){
+            result = items.remove(0);
+            inventory.put(slotLocation, items);
+            //System.out.println(); TODO get the vend message
 
         }
         return result;
