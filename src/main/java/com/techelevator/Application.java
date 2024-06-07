@@ -68,12 +68,26 @@ public class Application {
 	public void run(){
 		this.ic = new ItemCounter();
 		this.vend = new Vend();
+		Item purchaseItem = null;
+		;
+
 		Scanner vendingScanner = new Scanner(System.in);
 		this.running=true;
 		//stocklist
 		vend.loadInventoryList(ic);
 		//printInventoryList();
 		//load physical inventory
+		vend.loadInventory(ic);
+		checkInventory();
+
+		//if (purchaseItem != null){
+		//	System.out.println("You bought a " + purchaseItem.toString());
+		//	purchaseItem = null;
+		//}else{
+		//	System.out.println("Sold out!");
+		//}
+
+
 		while (running){
 
 			displayMenu();
@@ -114,15 +128,25 @@ public class Application {
 					break;
 
 				case SELECT_PRODUCT:
-					Vend inventoryList = new Vend();
-					inventoryList.loadInventory(this.vend);
+					printInventoryList();
+					System.out.println("Enter slot ID for desired item: ");
+					String itemLocation = vendingScanner.nextLine();
+					ItemCounter dispense = new ItemCounter();
+					dispense.purchase(itemLocation);
+					System.out.println("You purchased a "+ purchaseItem.toString());
+					if (purchaseItem != null){
+						System.out.println("You purchase a " + purchaseItem.toString());
+						purchaseItem = null;
+					}else{
+						System.out.println("Sold out!");
+					}
 					break;
 				case FINISH_TRANSACTION:
 					// return change
 					// balance = 0
 
 					int change = this.vend.getBalance();
-					
+
 					Vend getChange = new Vend();
 					getChange.endTransaction(change);
 					this.activeMenu = MAIN_MENU;
@@ -145,7 +169,7 @@ public class Application {
 			System.out.println(stockItem.getKey() + ": " + stockItem.getValue().toString());
 		}
 	}
-	private void loadInventory(){
+	private void checkInventory(){
 		for(Map.Entry<String, List<Item>> slotItems : ic.inventory.entrySet()){
 			String itemName = ic.stockList.get(slotItems.getKey()).getName();
 			System.out.println("Slot (" + slotItems.getKey() + ") has " + slotItems.getValue().size() + " " + itemName);

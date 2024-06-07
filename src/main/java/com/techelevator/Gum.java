@@ -7,7 +7,7 @@ public class Gum extends Item{
         return VENDING_MESSAGE_GUM;
     }
 
-    public Gum(String slotLocation, String name, double price, String type) {
+    public Gum(String slotLocation, String name, int price, String type) {
         super(slotLocation, name, price, type);
     }
 }

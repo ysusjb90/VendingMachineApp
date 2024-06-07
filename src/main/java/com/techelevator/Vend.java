@@ -60,7 +60,7 @@ public class Vend {
         }
     }
 
-    public void loadInventory(Vend vend) {
+    public void loadInventory(ItemCounter ic) {
         Map<String, List<Item>> result = new HashMap<>();
         List<Item> slotNumberList;
         try {
@@ -97,29 +97,20 @@ public class Vend {
 
     }
     public void endTransaction (int balance){
-        if(balance > 0){
+        if(balance> 0){
         int change = balance * 100;
         int numOfQuarters = change / QUARTER;
         change = change % QUARTER;
         int numOfDimes = change / DIME;
         change = change % DIME;
         int numOfNickels = change / NICKEL;
+        balance=change;
+        //balance= (balance-(numOfQuarters*QUARTER)-(numOfDimes*DIME)-(numOfNickels*NICKEL))/100;
+
             System.out.println("Returns: " + numOfQuarters + " Quarters, " + numOfDimes + " Dimes, and " + numOfNickels + " Nickels.");
             System.out.println("balance = " + balance + ".");
         }
 
-
-
-
-
-
-        /* balance = changeNeeded;
-        if (changeNeeded % QUARTER >= 0) {
-            balance = balance - changeNeeded;
-            if (changeNeeded % QUARTER < 1 && changeNeeded % QUARTER > 0) {
-                balance = balance - changeNeeded % QUARTER * QUARTER;
-            }
-        }*/
     }
 }
 

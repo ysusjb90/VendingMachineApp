@@ -22,4 +22,10 @@ public class ItemCounter {
         }
         return result;
     }
+    //public Item dispense(String slotLocation){
+    //    Item result = null;
+//
+    //    if (this.inventory.get(slotLocation))
+    //        return result;
+    //}
 }
