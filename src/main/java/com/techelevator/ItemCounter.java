@@ -21,10 +21,13 @@ public class ItemCounter {
             result = items.remove(0);
             inventory.put(slotLocation, items);
             Vend balanceUpdater = new Vend();
-            int currentBalance = balanceUpdater.getBalance();
-            Item priceUpdater = new Item();
-            int cost = (int) priceUpdater.getPrice();
-            currentBalance = currentBalance - cost;
+            inventory.toString();
+            //int currentBalance = balanceUpdater.getBalance();
+            //Item priceUpdater = new Item();
+            //int cost = (int) priceUpdater.getPrice();
+            //currentBalance = currentBalance - cost;
+
+            //balanceUpdater.getDisplayBalance() = (double) currentBalance;
 
 
 

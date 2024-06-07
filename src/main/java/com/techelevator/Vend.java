@@ -15,6 +15,7 @@ public class Vend {
     private final String INVENTORY_LIST = "vendingmachine.csv";
     private final int MAX_SLOT_NUMBER = 5;
     private int balance;
+    private double displayBalance;
     private static final int NICKEL = 5;
     private static final int DIME = 10;
     private static final int QUARTER = 25;
@@ -33,6 +34,10 @@ public class Vend {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public double getDisplayBalance() {
+        return displayBalance;
     }
 
     public Vend() {

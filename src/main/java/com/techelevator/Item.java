@@ -28,7 +28,7 @@ public class Item {
     }
 
     public double getPrice() {
-        return price * 100;
+        return price;
     }
 
 

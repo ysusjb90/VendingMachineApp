@@ -103,6 +103,7 @@ public class Application {
 				userInput = 0;
 			}
 			String chosenInput = activeMenu[userInput-1];
+			Logger transaction= new Logger();
 
 			switch (chosenInput){
 				case DISPLAY_VENDING_MACHINE_ITEMS:
@@ -128,6 +129,8 @@ public class Application {
 					Vend feedMoney = new Vend();
 
 					vend.feedMoney(usersMoneyIn);
+					String eventMoney = "FEED MONEY: " + usersMoneyIn + feedMoney.getBalance();
+					transaction.logEvent(eventMoney);
 					break;
 
 				case SELECT_PRODUCT:
@@ -143,7 +146,8 @@ public class Application {
 					//System.out.println("You purchased a "+ purchaseItem.toString());
 
 					if (purchaseItem != null){
-						System.out.println("You purchased " + purchaseItem.getName().toString());
+						System.out.println("You purchased " + purchaseItem.getName() +
+								" for $" +purchaseItem.getPrice());
 						purchaseItem = null;
 
 						String itemType = ic.stockList.get(itemLocation).getType();
@@ -166,6 +170,9 @@ public class Application {
 
 						System.out.println("Sold out!");
 					}
+					String eventPurchase = // TODO purchaseItem.getName() + " " + purchaseItem.getSlotLocation()+ " "
+							+ " " + purchaseItem.getPrice(); // TODO add new balance;
+					transaction.logEvent(eventPurchase);
 					break;
 				case FINISH_TRANSACTION:
 
