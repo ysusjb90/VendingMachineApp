@@ -118,6 +118,7 @@ public class Application {
 					break;
 				case HIDDEN_METHOD:
 					// return sales report
+
 					break;
 				case FEED_MONEY:
 					System.out.println("How much would you like to deposit?");

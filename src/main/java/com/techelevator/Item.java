@@ -5,6 +5,8 @@ public class Item {
     private String name;
     private double price;
     private String type;
+    private String message;
+
     public String getSlotLocation() {
         return slotLocation;
     }

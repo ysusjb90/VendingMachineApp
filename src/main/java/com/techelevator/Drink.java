@@ -1,7 +1,7 @@
 package com.techelevator;
 
 public class Drink extends Item{
-private String VENDING_MESSAGE_DRINK = "Glug Glug, Yum";
+private final String VENDING_MESSAGE_DRINK = "Glug Glug, Yum";
 
     public String getVENDING_MESSAGE_DRINK() {
         return VENDING_MESSAGE_DRINK;
