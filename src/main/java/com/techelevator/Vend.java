@@ -114,7 +114,7 @@ public class Vend {
         //balance= (balance-(numOfQuarters*QUARTER)-(numOfDimes*DIME)-(numOfNickels*NICKEL))/100;
 
             System.out.println("Returns: " + numOfQuarters + " Quarters, " + numOfDimes + " Dimes, and " + numOfNickels + " Nickels.");
-            System.out.println("balance = " + balance + ".");
+            System.out.println("balance = " + balance );
         }
         return balance;
 

@@ -9,6 +9,7 @@ public class Item {
 
     public Item() {
 
+
     }
 
     public String getSlotLocation() {
