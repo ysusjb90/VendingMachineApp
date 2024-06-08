@@ -19,7 +19,6 @@ public class Application {
 	private static final String [] PURCHASE_MENU = {FEED_MONEY, SELECT_PRODUCT,FINISH_TRANSACTION};
 	private String[] activeMenu = MAIN_MENU;
 	private boolean running = false;
-	private double superBalance = 0.0;
 
 	public ItemCounter getIc() {
 		return ic;
@@ -126,7 +125,7 @@ public class Application {
 					System.out.println("How much would you like to deposit?");
 
 					String moneyIn = vendingScanner.nextLine();
-					int usersMoneyIn = Integer.parseInt(moneyIn);
+					double usersMoneyIn = Double.parseDouble(moneyIn);
 					Vend feedMoney = new Vend();
 
 					vend.feedMoney(usersMoneyIn);
@@ -150,6 +149,7 @@ public class Application {
 					if (purchaseItem != null){
 						System.out.println("You purchased " + purchaseItem.getName() +
 								" for $" +purchaseItem.getPrice());
+						//dispense.moneyPay(vend.feedMoney());
 
 
 
@@ -174,12 +174,12 @@ public class Application {
 						System.out.println("Sold out!");
 					}
 					String eventPurchase = purchaseItem.getName() + " " + purchaseItem.getSlotLocation()+ " "
-							+ " " + purchaseItem.getPrice(); // TODO add new balance;
+							+ " " + purchaseItem.getPrice() ; // TODO add new balance;
 					transaction.logEvent(eventPurchase);
 					break;
 				case FINISH_TRANSACTION:
 
-					int change = this.vend.getBalance();
+					double change = this.vend.getBalance();
 
 					Vend getChange = new Vend();
 					getChange.endTransaction(change);

@@ -7,6 +7,11 @@ import java.util.Map;
 public class ItemCounter {
     public Map<String, Item> stockList;
     public Map<String, List<Item>> inventory;
+double balance;
+
+    public double getBalance() {
+        return balance;
+    }
 
     public  ItemCounter(){
         stockList = new HashMap<>();
@@ -39,7 +44,12 @@ public class ItemCounter {
         }
         return result;
     }
+public double moneyPay (double balance) {
+        Item productPrice = new Item();
+        this.balance-=productPrice.getPrice();
 
+        return this.balance;
+}
 
 
 

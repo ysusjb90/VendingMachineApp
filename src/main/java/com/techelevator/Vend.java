@@ -14,7 +14,7 @@ public class Vend {
     //money out
     private final String INVENTORY_LIST = "vendingmachine.csv";
     private final int MAX_SLOT_NUMBER = 5;
-    private int balance;
+    private double balance;
     private double displayBalance;
     private static final int NICKEL = 5;
     private static final int DIME = 10;
@@ -32,8 +32,8 @@ public class Vend {
         return MAX_SLOT_NUMBER;
     }
 
-    public int getBalance() {
-        return this.balance;
+    public double getBalance() {
+        return balance;
     }
 
     public void setBalance(int balance) {
@@ -94,7 +94,7 @@ public class Vend {
     }
 
 
-    public void feedMoney(int balance) {
+    public double feedMoney(double balance) {
         int userMoneyInput = 0;
         this.balance=balance;
         Scanner userMoney = new Scanner(String.valueOf(userMoneyInput));
@@ -104,12 +104,12 @@ public class Vend {
             System.out.println(balance);
         } catch (NumberFormatException nfe) {
             userMoneyInput = 0;
-        }
+        }return balance;
 
     }
-    public void endTransaction (int balance){
+    public void endTransaction (double balance){
         if(balance> 0){
-        int change = balance * 100;
+        int change = (int) balance * 100;
         int numOfQuarters = change / QUARTER;
         change = change % QUARTER;
         int numOfDimes = change / DIME;
