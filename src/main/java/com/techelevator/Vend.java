@@ -95,21 +95,16 @@ public class Vend {
 
 
     public double feedMoney(double balance) {
-        int userMoneyInput = 0;
-        this.balance=balance;
-        Scanner userMoney = new Scanner(String.valueOf(userMoneyInput));
-        try {
-            userMoneyInput = Integer.parseInt(userMoney.nextLine());
-            balance += userMoneyInput;
-            System.out.println(balance);
-        } catch (NumberFormatException nfe) {
-            userMoneyInput = 0;
-        }return balance;
+
+        displayBalance += balance;
+
+        return displayBalance;
 
     }
     public void endTransaction (double balance){
         if(balance> 0){
-        int change = (int) balance * 100;
+            balance = balance * 100;
+        int change = (int) balance;
         int numOfQuarters = change / QUARTER;
         change = change % QUARTER;
         int numOfDimes = change / DIME;

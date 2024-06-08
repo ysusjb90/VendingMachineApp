@@ -126,11 +126,9 @@ public class Application {
 
 					String moneyIn = vendingScanner.nextLine();
 					double usersMoneyIn = Double.parseDouble(moneyIn);
-					Vend feedMoney = new Vend();
-
 					vend.feedMoney(usersMoneyIn);
-					//this.displayBalance((double) usersMoneyIn) ;
-					String eventMoney = "FEED MONEY: $" + usersMoneyIn + feedMoney.getBalance();
+					System.out.println(vend.getDisplayBalance());
+					String eventMoney = "FEED MONEY: $" + usersMoneyIn;
 					transaction.logEvent(eventMoney);
 					break;
 
@@ -140,16 +138,17 @@ public class Application {
 					System.out.println("Enter slot ID for desired item: ");
 					String itemLocation = vendingScanner.nextLine();
 					purchaseItem = ic.purchase(itemLocation);
-					//purchaseItem = ic.purchase(itemLocation);
 
 					ItemCounter dispense = new ItemCounter();
 					dispense.purchase(itemLocation);
-					//System.out.println("You purchased a "+ purchaseItem.toString());
 
-					if (purchaseItem != null){
+					if (purchaseItem != null){ // TODO make sure you have a balance greater than price
 						System.out.println("You purchased " + purchaseItem.getName() +
 								" for $" +purchaseItem.getPrice());
 						//dispense.moneyPay(vend.feedMoney());
+						double newBalance = vend.getDisplayBalance() - purchaseItem.getPrice();
+						vend.setDisplayBalance(newBalance);
+						System.out.println("Your updated balance is: " + vend.getDisplayBalance());
 
 
 
@@ -179,10 +178,10 @@ public class Application {
 					break;
 				case FINISH_TRANSACTION:
 
-					double change = this.vend.getBalance();
+					double change = this.vend.getDisplayBalance();
 
-					Vend getChange = new Vend();
-					getChange.endTransaction(change);
+					//Vend getChange = new Vend();
+					vend.endTransaction(change);
 					this.activeMenu = MAIN_MENU;
 					String eventGiveChange = "GIVE CHANGE: $" + (double) change;
 					transaction.logEvent(eventGiveChange);
