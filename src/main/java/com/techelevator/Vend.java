@@ -101,7 +101,7 @@ public class Vend {
         return displayBalance;
 
     }
-    public void endTransaction (double balance){
+    public double endTransaction (double balance){
         if(balance> 0){
             balance = balance * 100;
         int change = (int) balance;
@@ -116,6 +116,7 @@ public class Vend {
             System.out.println("Returns: " + numOfQuarters + " Quarters, " + numOfDimes + " Dimes, and " + numOfNickels + " Nickels.");
             System.out.println("balance = " + balance + ".");
         }
+        return balance;
 
     }
 

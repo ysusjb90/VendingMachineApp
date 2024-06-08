@@ -128,7 +128,7 @@ public class Application {
 					double usersMoneyIn = Double.parseDouble(moneyIn);
 					vend.feedMoney(usersMoneyIn);
 					System.out.println(vend.getDisplayBalance());
-					String eventMoney = "FEED MONEY: $" + usersMoneyIn;
+					String eventMoney = "FEED MONEY: $" + usersMoneyIn +" $" + vend.getDisplayBalance();
 					transaction.logEvent(eventMoney);
 					break;
 
@@ -136,54 +136,64 @@ public class Application {
 					//printInventoryList();
 					checkInventory();
 					System.out.println("Enter slot ID for desired item: ");
-					String itemLocation = vendingScanner.nextLine();
+					try {String itemLocation = vendingScanner.nextLine().toUpperCase();
 					purchaseItem = ic.purchase(itemLocation);
 
 					ItemCounter dispense = new ItemCounter();
 					dispense.purchase(itemLocation);
-
-					if (purchaseItem != null){ // TODO make sure you have a balance greater than price
-						System.out.println("You purchased " + purchaseItem.getName() +
-								" for $" +purchaseItem.getPrice());
-						//dispense.moneyPay(vend.feedMoney());
-						double newBalance = vend.getDisplayBalance() - purchaseItem.getPrice();
-						vend.setDisplayBalance(newBalance);
-						System.out.println("Your updated balance is: " + vend.getDisplayBalance());
+					//TODO make try catch loop for other wrong inputs
 
 
+					if (purchaseItem != null) {
+						if (vend.getDisplayBalance() > purchaseItem.getPrice()) {
+							System.out.println("You purchased " + purchaseItem.getName() +
+									" for $" + purchaseItem.getPrice());
+							//dispense.moneyPay(vend.feedMoney());
+							double newBalance = vend.getDisplayBalance() - purchaseItem.getPrice();
+							vend.setDisplayBalance(newBalance);
+							System.out.println("Your updated balance is: $" + vend.getDisplayBalance());
 
-						String itemType = ic.stockList.get(itemLocation).getType();
-						switch (itemType){
-							case "Chip":
-								System.out.println("Crunch Crunch, Yum");
-								break;
-							case "Gum":
-								System.out.println("Chew Chew, Yum");
-								break;
-							case "Drink":
-								System.out.println("Glug Glug, Yum");
-								break;
-							case "Candy":
-								System.out.println("Munch Munch, Yum");
-								break;
 
+							String itemType = ic.stockList.get(itemLocation).getType();
+							switch (itemType) {
+								case "Chip":
+									System.out.println("Crunch Crunch, Yum");
+									break;
+								case "Gum":
+									System.out.println("Chew Chew, Yum");
+									break;
+								case "Drink":
+									System.out.println("Glug Glug, Yum");
+									break;
+								case "Candy":
+									System.out.println("Munch Munch, Yum");
+									break;
+
+							}
+						} else if (vend.getDisplayBalance() < purchaseItem.getPrice()) {
+							System.out.println("Not enough money, please feed more money.");
+						} else {
+
+							System.out.println("Sold out!");
 						}
-					}else{
+					}} catch (NullPointerException e){
+				System.out.println("Invalid entry. Try another slot");
+				this.activeMenu=PURCHASE_MENU;
 
-						System.out.println("Sold out!");
-					}
+			}
 					String eventPurchase = purchaseItem.getName() + " " + purchaseItem.getSlotLocation()+ " "
-							+ " " + purchaseItem.getPrice() ; // TODO add new balance;
+							+ " $" + purchaseItem.getPrice() + " $" + vend.getDisplayBalance();
 					transaction.logEvent(eventPurchase);
 					break;
 				case FINISH_TRANSACTION:
 
 					double change = this.vend.getDisplayBalance();
+					double endBalance = 0.00;
 
 					//Vend getChange = new Vend();
 					vend.endTransaction(change);
 					this.activeMenu = MAIN_MENU;
-					String eventGiveChange = "GIVE CHANGE: $" + (double) change;
+					String eventGiveChange = "GIVE CHANGE: $" + (double) change + " $" + endBalance;
 					transaction.logEvent(eventGiveChange);
 					break;
 			}
