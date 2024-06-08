@@ -19,6 +19,7 @@ public class Application {
 	private static final String [] PURCHASE_MENU = {FEED_MONEY, SELECT_PRODUCT,FINISH_TRANSACTION};
 	private String[] activeMenu = MAIN_MENU;
 	private boolean running = false;
+	private double superBalance = 0.0;
 
 	public ItemCounter getIc() {
 		return ic;
@@ -129,7 +130,8 @@ public class Application {
 					Vend feedMoney = new Vend();
 
 					vend.feedMoney(usersMoneyIn);
-					String eventMoney = "FEED MONEY: " + usersMoneyIn + feedMoney.getBalance();
+					//this.displayBalance((double) usersMoneyIn) ;
+					String eventMoney = "FEED MONEY: $" + usersMoneyIn + feedMoney.getBalance();
 					transaction.logEvent(eventMoney);
 					break;
 
@@ -148,7 +150,8 @@ public class Application {
 					if (purchaseItem != null){
 						System.out.println("You purchased " + purchaseItem.getName() +
 								" for $" +purchaseItem.getPrice());
-						purchaseItem = null;
+
+
 
 						String itemType = ic.stockList.get(itemLocation).getType();
 						switch (itemType){
@@ -170,7 +173,7 @@ public class Application {
 
 						System.out.println("Sold out!");
 					}
-					String eventPurchase = // TODO purchaseItem.getName() + " " + purchaseItem.getSlotLocation()+ " "
+					String eventPurchase = purchaseItem.getName() + " " + purchaseItem.getSlotLocation()+ " "
 							+ " " + purchaseItem.getPrice(); // TODO add new balance;
 					transaction.logEvent(eventPurchase);
 					break;
@@ -181,12 +184,17 @@ public class Application {
 					Vend getChange = new Vend();
 					getChange.endTransaction(change);
 					this.activeMenu = MAIN_MENU;
+					String eventGiveChange = "GIVE CHANGE: $" + (double) change;
+					transaction.logEvent(eventGiveChange);
 					break;
 			}
 
 		}
 
 	}
+
+
+
 	private void displayMenu() {
 		for (int i = 0; i < activeMenu.length; i++) {
 			String menuOptionNumber = (i + 1) + ") ";

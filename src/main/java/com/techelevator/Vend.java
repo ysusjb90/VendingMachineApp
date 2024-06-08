@@ -24,6 +24,10 @@ public class Vend {
         return INVENTORY_LIST;
     }
 
+    public void setDisplayBalance(double displayBalance) {
+        this.displayBalance = displayBalance;
+    }
+
     public int getMAX_SLOT_NUMBER() {
         return MAX_SLOT_NUMBER;
     }
@@ -42,6 +46,8 @@ public class Vend {
 
     public Vend() {
         Scanner fileScanner = new Scanner(INVENTORY_LIST);
+
+
 
     }
 
@@ -117,6 +123,7 @@ public class Vend {
         }
 
     }
+
 }
 
 

@@ -21,7 +21,12 @@ public class ItemCounter {
             result = items.remove(0);
             inventory.put(slotLocation, items);
             Vend balanceUpdater = new Vend();
-            inventory.toString();
+            double currentBalance = balanceUpdater.getDisplayBalance();
+            currentBalance -= result.getPrice();
+            balanceUpdater.setDisplayBalance(currentBalance);
+
+
+            //balanceUpdater = result.getPrice();
             //int currentBalance = balanceUpdater.getBalance();
             //Item priceUpdater = new Item();
             //int cost = (int) priceUpdater.getPrice();
@@ -34,6 +39,10 @@ public class ItemCounter {
         }
         return result;
     }
+
+
+
+
     //public Item dispense(String slotLocation){
     //    Item result = null;
 //
