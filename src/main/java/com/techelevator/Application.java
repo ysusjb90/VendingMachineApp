@@ -100,9 +100,7 @@ public class Application {
 
 			try{
 				userInput=Integer.parseInt(vendingScanner.nextLine());
-			}catch (NumberFormatException nfe){
-				userInput = 0;
-			}
+
 			String chosenInput = activeMenu[userInput-1];
 			Logger transaction= new Logger();
 
@@ -206,6 +204,10 @@ public class Application {
 					this.vend.setDisplayBalance(endBalance);
 					break;
 			}
+			}catch (Exception nfe){
+				System.out.println("Invalid entry. Please try again");
+			userInput = 0;
+		}
 
 		}
 
