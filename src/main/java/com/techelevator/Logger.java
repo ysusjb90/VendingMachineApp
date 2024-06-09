@@ -33,6 +33,7 @@ public class Logger {
         try(PrintWriter lw = new PrintWriter(new FileOutputStream(new File(transLogFile), true))){
             int sellingCounter=0;
             ItemCounter ic = new ItemCounter();
+            //Attempt to make a sales log counter below.
 
             try {
                 File dataFile = new File(INVENTORY_LIST);
@@ -42,6 +43,7 @@ public class Logger {
                         String slotNumber = data[0];
                         Item newItem = new Item(data[1]);
                         totalSalesLog.put(newItem.getName(), sellingCounter);
+                        sellingCounter ++;
 
                         }
 

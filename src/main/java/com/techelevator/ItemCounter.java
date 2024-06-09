@@ -52,7 +52,6 @@ public double moneyPay (double balance) {
 }
 
 
-
     //public Item dispense(String slotLocation){
     //    Item result = null;
 //

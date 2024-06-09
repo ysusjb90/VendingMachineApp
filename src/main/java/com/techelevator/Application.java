@@ -115,7 +115,7 @@ public class Application {
 					this.running = false;
 					break;
 				case HIDDEN_METHOD:
-					System.out.println(transaction.getTotalSalesLog());
+					// Trying to fill sales log. System.out.println(transaction.getTotalSalesLog());
 					break;
 				case FEED_MONEY:
 					System.out.println("How much would you like to deposit?");
@@ -188,6 +188,7 @@ public class Application {
 						break;
 					}
 					catch (Exception e){
+						//looking for NullPointerException, cannot find.
 						System.out.println("Invalid entry. Try another slot");
 						this.activeMenu=PURCHASE_MENU;
 						}
