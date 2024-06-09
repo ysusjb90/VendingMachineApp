@@ -107,8 +107,6 @@ public class Application {
 			switch (chosenInput){
 				case DISPLAY_VENDING_MACHINE_ITEMS:
 					printInventoryList();
-					//Vend inventory = new Vend();
-					//inventory.loadInventoryList(this.ic);
 					break;
 				case PURCHASE:
 					this.activeMenu = PURCHASE_MENU;
@@ -117,8 +115,7 @@ public class Application {
 					this.running = false;
 					break;
 				case HIDDEN_METHOD:
-					// return sales report
-
+					System.out.println(transaction.getTotalSalesLog());
 					break;
 				case FEED_MONEY:
 					System.out.println("How much would you like to deposit?");
@@ -132,7 +129,6 @@ public class Application {
 					break;
 
 				case SELECT_PRODUCT:
-					//printInventoryList();
 					checkInventory();
 					System.out.println("Enter slot ID for desired item: ");
 
@@ -175,19 +171,26 @@ public class Application {
 								String eventPurchase = purchaseItem.getName() + " " + purchaseItem.getSlotLocation() + " "
 										+ " $" + purchaseItem.getPrice() + " $" + vend.getDisplayBalance();
 								transaction.logEvent(eventPurchase);
+								String loggingTransactions = purchaseItem.getName();
+								transaction.logTransaction(loggingTransactions);
+								break;
+
 							} else {
 								System.out.println("Not enough money, please feed more money.");
+								break;
 							}
 						} else {
 
 							System.out.println("Sold out!");
+
 						}
 						this.activeMenu = PURCHASE_MENU;
+						break;
 					}
 					catch (Exception e){
 						System.out.println("Invalid entry. Try another slot");
 						this.activeMenu=PURCHASE_MENU;
-						continue;}
+						}
 					break;
 
 				case FINISH_TRANSACTION:

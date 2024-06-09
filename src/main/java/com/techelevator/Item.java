@@ -44,6 +44,9 @@ public class Item {
         this.price = price;
         this.type = type;
     }
+    public Item(String name){
+        this.name = name;
+    }
     @Override
     public String toString(){
         return "Item{" +
